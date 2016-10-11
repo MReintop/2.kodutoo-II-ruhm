@@ -6,6 +6,7 @@ require("functions.php");
 if(isset($_SESSION["userID"])){
 	
 	header("Location:data.php");
+	exit();
 }
 
 
@@ -16,6 +17,7 @@ if(isset($_SESSION["userID"])){
 	$registerEmailError = "";
 	$registerPasswordError ="";
 	$signupEmail = "";	
+	$registerEmail = "";	
 	
 	
 
@@ -65,6 +67,11 @@ if(isset($_SESSION["userID"])){
 		if( empty($_POST["registerEmail"])) {
 
 			$registerEmailError = "e-mail on kohustuslik";
+         }else{
+			
+			//email olemas
+			$registerEmail=$_POST["registerEmail"];
+
 
 
 
@@ -110,7 +117,7 @@ if( isset($_POST["registerPassword"] )){
 		
 		echo "password hashed: ".$password."<br>";  
 		
-		signUp($registerEmail,$password);
+		signUp((cleanInput($registerEmail)),(cleanInput($password)));
 		
 		
 		//salvestame andmebaasi
@@ -156,7 +163,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"])
 			){
 				
-				$error = login($_POST["signupEmail"], $_POST["signupPassword"]);
+				$error = login(cleanInput($_POST["signupEmail"]),(cleanInput($_POST["signupPassword"])));
 			}
 	
 ?>
@@ -204,7 +211,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 	<form method=post>
 
-	<input type=text  name=registerEmail  placeholder="Sisesta meiliaadress" > <br><br>
+	<input type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br><br>
 	
 	
 
