@@ -94,15 +94,15 @@
 <head>
 <title>Pealkiri</title>
 </head>
-<body bgcolor="#99FF33">
+<body background = "http://www.intrawallpaper.com/static/images/HD-Background-Wallpapers-7_0tMpSq2.jpg">
 
 
-<h1><font face="verdana" color="green">Andmete sisestamine</font></h1>
+<center><h1><font face="verdana" color="green">Andmete sisestamine</font></h1></center>
 
-<h2><font face="verdana" color="green"> Salvesta toataim</font> </h2>
+<center><h2><font face="verdana" color="green"> Salvesta toataim</font> </h2></center>
 
 
-	<form method=POST>
+	<center><form method=POST>
    
 
           
@@ -119,7 +119,7 @@
 		<input type="submit" value="Salvesta">
 	<br><br>
 	
-	</form>
+	</form></center>
 
 
 
@@ -128,7 +128,7 @@
 	
 	
 	
-	<?php
+	<center><?php
 	
 	$html = "<table>";
 	$html .= "<tr>";
@@ -164,7 +164,7 @@
 	
 	
 	echo $listHtml;
-	?>
+	?></center>
 	
 	
 	
@@ -175,11 +175,11 @@
 	
 	
 <br><br>
-<p><font face="verdana" color="green">
+<center><p><font face="verdana" color="green">
 	Tere tulemast <?=$_SESSION["userEmail"];?>!
 	<a href="?logout=1">Logi välja</a>
 	</font>
-</p>
+</p></center>
 	
 
 

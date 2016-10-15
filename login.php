@@ -174,13 +174,13 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <head>
 <title>´Logi sisse või loo kasutaja</title>
 </head>
-<body bgcolor="#99FF33">
+<body background="http://www.intrawallpaper.com/static/images/HD-Background-Wallpapers-7_0tMpSq2.jpg">
 
-<h2><font face="verdana" color="green">Logi sisse</font></h2>
+<center><h2><font face="verdana" color="green">Logi sisse</font></h2></center>
 
 
 
-	<form method=POST>
+	<center><form method=POST>
 
 
 
@@ -199,17 +199,17 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 
 
-	</form>
+	</form></center>
 
 	
-	<h1><font face="verdana" color="green">Loo kasutaja</font></h1>
-	<h2><font face="verdana" color="green">Sisesta e-mail</font></h2>
+	<center><h1><font face="verdana" color="green">Loo kasutaja</font></h1></center>
+	<center><h2><font face="verdana" color="green">Sisesta e-mail</font></h2></center>
 
-	<?php echo $registerEmailError;?>
-	<?php echo $registerPasswordError;?>
+	<center><?php echo $registerEmailError;?></center>
+	<center><?php echo $registerPasswordError;?></center>
 	
 
-	<form method=post>
+	<center><form method=post>
 
 	<input type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br><br>
 	
@@ -223,7 +223,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 
 
-	</form>
+	</form></center>
 	
 
 	
