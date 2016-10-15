@@ -92,26 +92,26 @@
 
 <html>
 <head>
-<title>Pealkiri</title>
+<title>Kalender</title>
 </head>
-<body background = "http://www.intrawallpaper.com/static/images/HD-Background-Wallpapers-7_0tMpSq2.jpg">
+<body background = "http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
 
+<br><br>
+<center><h1><font face="verdana" color="#006600">Andmete sisestamine</font></h1></center>
 
-<center><h1><font face="verdana" color="green">Andmete sisestamine</font></h1></center>
-
-<center><h2><font face="verdana" color="green"> Salvesta toataim</font> </h2></center>
+<center><h2><font face="verdana" color="#006600"> Salvesta toataim</font> </h2></center>
 
 
 	<center><form method=POST>
    
 
           
-	 <p><font face="verdana">Sisesta taime nimetus</font></p>
+	 <p><font face="verdana" color="#006600">Sisesta taime nimetus</font></p>
 		<input name="taim" placeholder="taime nimetus"  type="text" > 
 
 	<br><br>
 
-        <p><font face="verdana">Sisesta taime kastmisintervall(iga mitme päeva tagant)</font></p>
+        <p><font face="verdana"color="#006600">Sisesta taime kastmisintervall</font></p>
 		<input name="kastmiskorda" placeholder="mitme päeva tagant"  type ="number"> 
 
 	<br>
@@ -124,7 +124,6 @@
 
 
 
-	
 	
 	
 	
@@ -173,16 +172,6 @@
 	
 	
 	
-	
-<br><br>
-<center><p><font face="verdana" color="green">
-	Tere tulemast <?=$_SESSION["userEmail"];?>!
-	<a href="?logout=1">Logi välja</a>
-	</font>
-</p></center>
-	
-
-
 
 
 
@@ -276,7 +265,7 @@ body {font-family: Verdana,sans-serif;}
 </head>
 <body>
 
-<center><h1><font style="verdana" color="green">Kastmiskalender</font></h1></center>
+<center><h1><font style="verdana" color="#003300">Kastmiskalender</font></h1></center>
 
 <div class="month">
   <ul>
@@ -333,6 +322,13 @@ body {font-family: Verdana,sans-serif;}
   <li>31</li>
 </ul>
 
+
+<br><br>
+<center><p><font face="verdana" color="green">
+	Tere tulemast <?=$_SESSION["userEmail"];?>!
+	<a href="?logout=1">Logi välja</a>
+	</font>
+</p></center> 
 </body>
 </html>
 

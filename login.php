@@ -174,7 +174,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <head>
 <title>´Logi sisse või loo kasutaja</title>
 </head>
-<body background="http://www.intrawallpaper.com/static/images/HD-Background-Wallpapers-7_0tMpSq2.jpg">
+<body background="http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
 
 <center><h2><font face="verdana" color="green">Logi sisse</font></h2></center>
 
