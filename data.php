@@ -97,9 +97,9 @@
 <body background = "http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
 
 <br><br>
-<center><h1><font face="verdana" color="#006600">Andmete sisestamine</font></h1></center>
 
-<center><h2><font face="verdana" color="#006600"> Salvesta toataim</font> </h2></center>
+
+<center><h2><font face="verdana" color="#006600"> Toataimede sisestamine</font> </h2></center>
 
 
 	<center><form method=POST>

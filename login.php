@@ -156,7 +156,7 @@ if( isset($_POST["registerPassword"] )){
 	
 	}
 	
-var_dump($_POST);
+//var_dump($_POST);
 $error="";
 
 if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
@@ -176,6 +176,8 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 </head>
 <body background="http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
 
+<br><br><br><br><br>
+
 <center><h2><font face="verdana" color="green">Logi sisse</font></h2></center>
 
 
@@ -191,19 +193,19 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 		<input name=signupPassword placeholder="parool" type="password"> <?php echo $signupPasswordError; ?>
 
-	<br>
+	<br><br>
 
 		<input type="submit" value="Logi sisse">
 	<br><br>
-
+	<br><br><br>
 
 
 
 	</form></center>
 
 	
-	<center><h1><font face="verdana" color="green">Loo kasutaja</font></h1></center>
-	<center><h2><font face="verdana" color="green">Sisesta e-mail</font></h2></center>
+	<center><h2><font face="verdana" color="green">Loo kasutaja</font></h2></center>
+	
 
 	<center><?php echo $registerEmailError;?></center>
 	<center><?php echo $registerPasswordError;?></center>
