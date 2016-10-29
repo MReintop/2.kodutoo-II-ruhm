@@ -15,7 +15,7 @@ require("../../config.php");
 		
 		$database = "if16_mreintop";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO MVP (email, password) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 	
 		echo $mysqli->error;
 		
@@ -42,7 +42,7 @@ require("../../config.php");
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->prepare("
 		SELECT id, email, password, created 
-		FROM MVP
+		FROM user_sample
 		WHERE email = ?");
 	
 		echo $mysqli->error;

@@ -130,7 +130,7 @@ if( isset($_POST["registerPassword"] )){
 		
 		//MYSQL rida
 		
-		$stmt = $mysqli->prepare("INSERT INTO MVP(email, password) VALUES (?,?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample(email, password) VALUES (?,?)");
 		
 		//stringina 1 t2ht iga muutuja kohta , mis tyyp
 		// string - s   (date, varchar)
