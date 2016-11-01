@@ -17,8 +17,17 @@ if(isset($_SESSION["userID"])){
 	$registerEmailError = "";
 	$registerPasswordError ="";
 	$signupEmail = "";	
-	$registerEmail = "";	
+	$registerEmail = "";
+	$personalError = "";
 	
+	
+	if(isset($_POST["personal"])) {
+		if( empty($_POST["personal"])){
+			
+			$personalError = "Kirjuta enda kohta midagi! :)";
+		}
+		
+	}
 	
 
 
@@ -103,7 +112,7 @@ if( isset($_POST["registerPassword"] )){
 
 	
 	if($registerEmailError == "" && empty ($registerPasswordError) && isset($_POST["registerEmail"])
-			&& isset($_POST["registerPassword"]))  {
+			&& isset($_POST["registerPassword"])&& isset($_POST["personal"]))  {
 			
 	
 		
@@ -115,56 +124,23 @@ if( isset($_POST["registerPassword"] )){
 		
 		$password = hash("whirlpool", $_POST["registerPassword"]);
 		
-		echo "password hashed: ".$password."<br>";  
 		
 		signUp((cleanInput($registerEmail)),(cleanInput($password)));
+	
 		
-		
-		//salvestame andmebaasi
-			
-			//YHENDUS	
-			
-			$database = "if16_mreintop";
-		$mysqli = new mysqli ($serverHost, $serverUsername, $serverPassword, $database);
-		
-		
-		//MYSQL rida
-		
-		$stmt = $mysqli->prepare("INSERT INTO user_sample(email, password) VALUES (?,?)");
-		
-		//stringina 1 t2ht iga muutuja kohta , mis tyyp
-		// string - s   (date, varchar)
-		// integer - i   (t2isarv)
-		// float (double) - d  (komakohaga arv)
-		//kysim2rgid asendada muutujaga
-		
-		$stmt->bind_param("ss", $_POST["registerEmail"], $password);
-		//t2ida k2sku
-		//$stmt->execute();
-		
-		echo $mysqli->error;
-
-		if($stmt->execute())  {
-			
-			echo "salvestamine onnestus";
-			
-		
-		} else {
-			echo "ERROR".$stmt->error;
-			
-		}
 	
 	}
 	
 //var_dump($_POST);
 $error="";
 
-if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
-			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"])
+if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&& isset($_POST["personal"])&&
+			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"]) && !empty($_POST["personal"])
 			){
 				
 				$error = login(cleanInput($_POST["signupEmail"]),(cleanInput($_POST["signupPassword"])));
 			}
+	
 	
 ?>
 
@@ -218,6 +194,9 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 
 	<input type=password name=registerPassword  placeholder="Vali parool" > <br><br>
+	<br><br><?php echo $personalError;  ?>
+	<center><h2><font face="verdana" color="green"> Kirjuta enda kohta midagi huvitavat</font><br>
+	<input type=text name=personal placeholder="Kirjuta midagi enda kohta" size=50> <br><br>
 	
 	<input type="submit" value="Kinnitan">
 	

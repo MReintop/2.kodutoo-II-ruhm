@@ -22,7 +22,7 @@ require("../../config.php");
 		$stmt->bind_param("ss", $email, $password);
 		
 		if($stmt->execute()) {
-			echo "salvestamine õnnestus";
+			echo "salvestamine toimis!:)";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -100,7 +100,7 @@ require("../../config.php");
 	}
 	
 		
-	function savePlant ($taim, $intervall) {
+	function savePlant ($plant, $watering) {
 		
 		
 		
@@ -108,14 +108,14 @@ require("../../config.php");
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare(
-		"INSERT INTO lilled (taim, intervall) VALUES (?,?)");
+		"INSERT INTO flowers (plant, wateringInterval) VALUES (?,?)");
 		
 		echo $mysqli->error;
 		
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("ss", $taim,$intervall);
+		$stmt->bind_param("ss", $plant,$watering);
 		
 		if ( $stmt->execute() )  {
 			
@@ -140,13 +140,13 @@ require("../../config.php");
 		
 		$stmt = $mysqli->prepare("
 		
-		  SELECT id, taim,intervall FROM lilled
+		  SELECT id, plant,wateringInterval FROM flowers
 		 
 		");
 		echo $mysqli->error;
 		
 		
-		$stmt -> bind_result ($id, $taim,$intervall) ;
+		$stmt -> bind_result ($id, $plant,$watering) ;
 		$stmt ->execute();
 		
 		//tekitan massiivi
@@ -161,15 +161,15 @@ require("../../config.php");
 			
 			//tekitan objekti
 			
-			$plant = new StdClass();
+			$plantClass = new StdClass();
 			
-		    $plant->id=$id;
-			$plant->taim=$taim;
-			$plant->intervall=$intervall;
+		    $plantClass->id=$id;
+			$plantClass->taim=$plant;
+			$plantClass->intervall=$watering;
 			
 			
 			
-			array_push($result, $plant);
+			array_push($result, $plantClass);
 		}
 		$stmt->close();
 		$mysqli->close();
@@ -179,4 +179,145 @@ require("../../config.php");
 	}
 	
 	
+		
+	function saveInterest ($interest) {
+		
+		$database = "if16_mreintop";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->prepare("INSERT INTO interests (interest) VALUES (?)");
+	
+		echo $mysqli->error;
+		
+		$stmt->bind_param("s", $interest);
+		
+		if($stmt->execute()) {
+			echo "salvestamine õnnestus";
+		} else {
+		 	echo "ERROR ".$stmt->error;
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
+	
+	
+		function getAllInterests() {
+		
+		$database = "if16_mreintop";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("
+			SELECT  id, interest
+			FROM interests
+		");
+		 
+		echo $mysqli->error;
+		
+		
+		$stmt->bind_result($id, $interest);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			$i->id = $id;
+			$i->interest = $interest;
+		
+			array_push($result, $i);
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
+	}
+	
+	function saveUserInterest ($interest)  {
+		
+		echo ("ii".$_SESSION["userId"]."ii".$interest);
+		
+		$database = "if16_mreintop";
+		$mysqli = new mysqli ($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("
+		SELECT id FROM user_interests WHERE user_id=? AND userinterest_id=?
+		");
+		$stmt->bind_param("ii", $_SESSION["userId"], $interest);
+		$stmt->bind_result($id);
+		
+		$stmt->execute();
+		
+		if($stmt->fetch())  {
+			//oli olemas juba selline rida
+			echo "juba olemas";
+			return; //edasi midagi ei tehta
+			
+				
+		}
+		// KUI EI OLNUD, SIIS SISESTAN
+		
+		
+		$stmt = $mysqli->prepare("
+		INSERT INTO user_interests(user_id,userinterest_id)VALUES(?,?)
+		");
+		
+		$stmt->bind_param("ii",$_SESSION["userId"],$interest);
+		
+		if ($stmt->execute()){
+			
+			echo"salvestamine õnnestus";
+			} else {
+				echo "ERROR".$stmt->error;
+		}
+			}
+	function getAllUserInterests() {
+		
+		$database = "if16_mreintop";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("
+			SELECT  interest
+			FROM interests	
+			JOIN user_interests 
+			ON interests.id=user_interests.userinterest_id
+			WHERE user_interests.user_id = ?
+		");
+		 
+		echo $mysqli->error;
+		$stmt->bind_param("i",$_SESSION["userId"]);
+		
+		$stmt->bind_result($interest);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			
+			$i->interest = $interest;
+		
+			array_push($result, $i);
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
+	}
 ?>
