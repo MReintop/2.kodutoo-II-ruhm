@@ -202,7 +202,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 	</form>
 	
-	<p><font face="verdana" color="green">Sisesta oma ees- ja perekonnanimi</font></p>
+	
 	
 	
 	
@@ -222,7 +222,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 
 	<input type=password name=registerPassword  placeholder="Vali parool" > <br><br>
-	
+	<p><font face="verdana" color="green">Sisesta oma ees- ja perekonnanimi</font></p>
 	<input name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>">
 	<input name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 		
