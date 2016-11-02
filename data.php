@@ -97,7 +97,7 @@
 <body background = "http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
 
 <br><br>
-
+ Tere tulemast     <a href="user.php"><?=$_SESSION["firstName"];?>!</a>
 
 <center><h2><font face="verdana" color="#006600"> Toataimede sisestamine</font> </h2></center>
 
@@ -326,7 +326,7 @@ body {font-family: Verdana,sans-serif;}
 
 <br><br>
 <center><p><font face="verdana" color="green">
-	    Tere tulemast     <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+	   
 	<a href="?logout=1">Logi välja</a>
 	</font>
 	

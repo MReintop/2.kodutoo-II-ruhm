@@ -11,15 +11,15 @@ require("../../config.php");
 	//**** SIGNUP ***
 	//***************
 	
-	function signUp ($email, $password) {
+	function signUp ($email, $password,$userFirstName,$userLastName,$aboutUser) {
 		
 		$database = "if16_mreintop";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password,first_name, last_name,about_user) VALUES (?, ?,?,?,?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $email, $password);
+		$stmt->bind_param("sssss", $email, $password,$userFirstName, $userLastName, $aboutUser);
 		
 		if($stmt->execute()) {
 			echo "salvestamine toimis!:)";
@@ -41,7 +41,7 @@ require("../../config.php");
 		$database = "if16_mreintop";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->prepare("
-		SELECT id, email, password, created 
+		SELECT id, email, password, created ,first_name,last_name,about_user
 		FROM user_sample
 		WHERE email = ?");
 	
@@ -51,7 +51,7 @@ require("../../config.php");
 		$stmt->bind_param("s", $email);
 		
 		//määran väärtused muutujatesse
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
+		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $firstNameFromDb, $lastNameFromDb,$aboutUserFromDb);
 		$stmt->execute();
 		
 		//andmed tulid andmebaasist või mitte
@@ -69,6 +69,9 @@ require("../../config.php");
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
 				$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
+				$_SESSION["firstName"] = $firstNameFromDb;
+				$_SESSION["lastName"] = $lastNameFromDb;
+				$_SESSION["aboutUser"] = $aboutUserFromDb;
 				
 				
 				header("Location: data.php");

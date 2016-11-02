@@ -19,17 +19,45 @@ if(isset($_SESSION["userID"])){
 	$signupEmail = "";	
 	$registerEmail = "";
 	$personalError = "";
+	$nameError = "";
+	$userFirstName= "";
+	$userLastName="";
+	$aboutUser="";
 	
 	
 	if(isset($_POST["personal"])) {
 		if( empty($_POST["personal"])){
 			
 			$personalError = "Kirjuta enda kohta midagi! :)";
+		} else {
+			
+			$aboutUser = $_POST["personal"];
 		}
 		
 	}
 	
-
+	if(isset($_POST["FirstName"])){
+		
+		if(empty($_POST["FirstName"])){
+			
+			$nameError = "Ees-ja perekonnanimi on kohustuslikud!";
+		} else {
+			
+			$userFirstName=$_POST["FirstName"];
+			
+		}
+	}
+	
+	if(isset($_POST["LastName"])){
+		
+		if(empty($_POST["LastName"])){
+			
+			$nameError = "Ees-ja perekonnanimi on kohustuslikud!";
+		} else {
+			$userLastName=$_POST["LastName"];
+			
+		}
+	}
 
 	if( isset($_POST["signupEmail"] )){
 
@@ -39,7 +67,7 @@ if(isset($_SESSION["userID"])){
 
 			$signupEmailError = "see väli on kohustuslik";
 			
-		}else{
+		} else {
 			
 			//email olemas
 			$signupEmail=$_POST["signupEmail"];
@@ -109,33 +137,29 @@ if( isset($_POST["registerPassword"] )){
 	}
 
 
-
+	
 	
 	if($registerEmailError == "" && empty ($registerPasswordError) && isset($_POST["registerEmail"])
-			&& isset($_POST["registerPassword"])&& isset($_POST["personal"]))  {
-			
-	
+			&& isset($_POST["registerPassword"])&& isset($_POST["personal"]) && !empty($_POST["personal"]) && isset($_POST["FirstName"]) 
+			&& isset($_POST["LastName"])) {
 		
-		//salvestame andmebaasi
 		
-		echo "Salvestan...";
-		echo "email : ".$_POST["registerEmail"]."<br>";
-		echo "password: ".$_POST["registerPassword"]."<br>";
 		
 		$password = hash("whirlpool", $_POST["registerPassword"]);
 		
 		
-		signUp((cleanInput($registerEmail)),(cleanInput($password)));
+		signUp((cleanInput($registerEmail)),(cleanInput($password)),(cleanInput($userFirstName)),(cleanInput($userLastName)),(cleanInput($aboutUser)));
 	
-		
+		echo "Salvestan...";
+		echo "email : ".$_POST["registerEmail"]."<br>";
 	
 	}
 	
 //var_dump($_POST);
 $error="";
 
-if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&& isset($_POST["personal"])&&
-			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"]) && !empty($_POST["personal"])
+if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&& 
+			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"])
 			){
 				
 				$error = login(cleanInput($_POST["signupEmail"]),(cleanInput($_POST["signupPassword"])));
@@ -174,29 +198,40 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&& isset($_PO
 		<input type="submit" value="Logi sisse">
 	<br><br>
 	<br><br><br>
+		
 
-
-
-	</form></center>
-
+	</form>
+	
+	<p><font face="verdana" color="green">Sisesta oma ees- ja perekonnanimi</font></p>
+	
+	
+	
+	
 	
 	<center><h2><font face="verdana" color="green">Loo kasutaja</font></h2></center>
-	
+	<?php echo $nameError ?>
 
 	<center><?php echo $registerEmailError;?></center>
 	<center><?php echo $registerPasswordError;?></center>
 	
 
-	<center><form method=post>
+	<form method=post>
 
 	<input type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br><br>
 	
 	
 
 	<input type=password name=registerPassword  placeholder="Vali parool" > <br><br>
+	
+	<input name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>">
+	<input name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
+		
 	<br><br><?php echo $personalError;  ?>
+	
 	<center><h2><font face="verdana" color="green"> Kirjuta enda kohta midagi huvitavat</font><br>
-	<input type=text name=personal placeholder="Kirjuta midagi enda kohta" size=50> <br><br>
+	<input type=text name=personal placeholder="Kirjuta midagi enda kohta" size=50 value="<?=$aboutUser;?>"> <br><br>
+	
+	
 	
 	<input type="submit" value="Kinnitan">
 	
