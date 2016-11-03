@@ -42,17 +42,17 @@
 		!empty($_POST["waterings"])
 		)) {
 			
-			savePlant(cleanInput($_POST["user_plant"]), $_POST["waterings"]);
+			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]));
 			
 			header("Location: data.php");
 		    exit();
 		}
 		
-		$plantData=getAllPlants();
+	$plantData=$Plant->getAll();
 		
-		//echo"<pre>";
-		//var_dump($plantData);
-		//echo"</pre>";
+	echo"<pre>";
+	var_dump($plantData);
+	echo"</pre>";
 		
 	
 
@@ -137,7 +137,7 @@
 		$html .= "<th>taim</th>";
 		$html .= "<th>intervall</th>";
 	$html .= "</tr>";
-	
+
 	$i = 1;
 	//iga liikme kohta massiivis
 	foreach($plantData as $p) {
@@ -150,6 +150,7 @@
 			$html .= "<td>".$p->id."</td>";
 			$html .= "<td>".$p->taim."</td>";
 			$html .= "<td>".$p->intervall."</td>";
+			$html .= "<td><a href='edit.php?id=".$c->id."'>edit.php</a></td>";
 		$html .= "</tr>";
 		
 		$i += 1;
