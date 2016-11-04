@@ -148,7 +148,7 @@ if( isset($_POST["registerPassword"] )){
 		$password = hash("whirlpool", $_POST["registerPassword"]);
 		
 		
-		$User->signUp(($Helper->cleanInput($registerEmail)),($Helper->cleanInput($password)),($Helper->cleanInput($userFirstName)),($Helper->cleanInput($userLastName)),($Helper->cleanInput($aboutUser)));
+		signUp((cleanInput($registerEmail)),(cleanInput($password)),(cleanInput($userFirstName)),(cleanInput($userLastName)),(cleanInput($aboutUser)));
 	
 		echo "Salvestan...";
 		echo "email : ".$_POST["registerEmail"]."<br>";
@@ -162,7 +162,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"])
 			){
 				
-				$error = $User->login($Helper->cleanInput($_POST["signupEmail"]),($Helper->cleanInput($_POST["signupPassword"])));
+				$error = login(cleanInput($_POST["signupEmail"]),(cleanInput($_POST["signupPassword"])));
 			}
 	
 	
