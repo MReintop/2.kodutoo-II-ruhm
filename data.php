@@ -165,8 +165,7 @@
 	
 	echo $listHtml;
 	?><center>
-	
-	<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=400&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23ffccff&amp;src=mreintop%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FTallinn" style="border-width:0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23009900&amp;src=mreintop%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FTallinn" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 	
 	
 	
