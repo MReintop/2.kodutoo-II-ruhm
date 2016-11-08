@@ -117,7 +117,7 @@
 
 	<br>
 
-		<input type="submit" value="Salvesta">
+		<input class="btn btn-success" type="submit" value="Salvesta">
 	<br><br>
 	
 	</form></center>

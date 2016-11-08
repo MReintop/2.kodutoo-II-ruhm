@@ -195,7 +195,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 	<br><br>
 
-		<input type="submit" value="Logi sisse">
+		<input class="btn btn-success" type="submit" value="Logi sisse">
 	<br><br>
 	<br><br><br>
 		
@@ -233,7 +233,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 	
 	
-	<input type="submit" value="Kinnitan">
+	<input class="btn btn-success" type="submit" value="Kinnitan">
 	
 	
 
